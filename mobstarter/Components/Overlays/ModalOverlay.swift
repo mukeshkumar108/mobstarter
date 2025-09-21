@@ -101,8 +101,8 @@ private struct ConfirmationModal: View {
                     })
 
                     PrimaryButton("Confirm", action: {
-                        navigationState.dismissModal()
-                        confirmAction()
+                        confirmAction()                 // ✅ Call logout first
+                        navigationState.dismissModal()  // ✅ Then dismiss modal
                     })
                 }
             }
