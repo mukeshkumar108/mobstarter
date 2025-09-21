@@ -14,14 +14,16 @@ public struct CardView<Content: View>: View {
     private let shadow: Shadow?
     private let backgroundColor: Color
     private let borderColor: Color?
+    private let withAccentBorder: Bool
     private let onTap: (() -> Void)?
 
     public init(
         padding: CardPadding = .medium,
-        cornerRadius: CGFloat = CornerRadius.default,
+        cornerRadius: CGFloat = CornerRadius.l,
         shadow: Shadow? = Shadows.card,
         backgroundColor: Color = ColorPalette.card,
         borderColor: Color? = nil,
+        withAccentBorder: Bool = false,
         onTap: (() -> Void)? = nil,
         @ViewBuilder content: () -> Content
     ) {
@@ -31,6 +33,7 @@ public struct CardView<Content: View>: View {
         self.shadow = shadow
         self.backgroundColor = backgroundColor
         self.borderColor = borderColor
+        self.withAccentBorder = withAccentBorder
         self.onTap = onTap
     }
 
@@ -61,6 +64,17 @@ public struct CardView<Content: View>: View {
                     RoundedRectangle(cornerRadius: cornerRadius)
                         .stroke(borderColor, lineWidth: 1)
                 )
+            }
+            .if(withAccentBorder) { _ in
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .stroke(
+                        LinearGradient(
+                            colors: [ColorPalette.accent.opacity(0.5), ColorPalette.accent.opacity(0.2)],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        ),
+                        lineWidth: 1
+                    )
             }
     }
 }
@@ -107,6 +121,18 @@ extension View {
     ) -> some View {
         if let value = value {
             transform(self, value)
+        } else {
+            self
+        }
+    }
+
+    @ViewBuilder
+    func `if`<Content: View>(
+        _ condition: Bool,
+        transform: (Self) -> Content
+    ) -> some View {
+        if condition {
+            transform(self)
         } else {
             self
         }
@@ -174,6 +200,23 @@ public extension CardView {
                 .font(FontStyles.body)
                 .foregroundColor(ColorPalette.accent)
                 .frame(maxWidth: .infinity, alignment: .center)
+        }
+
+        CardView(
+            padding: .medium,
+            withAccentBorder: true,
+            onTap: { print("Gradient border card tapped!") }
+        ) {
+            VStack(alignment: .leading, spacing: Spacing.s) {
+                Text("Premium Card")
+                    .font(FontStyles.heading3)
+                    .foregroundColor(ColorPalette.textPrimary)
+
+                Text("This card has a gradient border for a premium look.")
+                    .font(FontStyles.body)
+                    .foregroundColor(ColorPalette.textSecondary)
+                    .lineLimit(2)
+            }
         }
     }
     .padding(Spacing.screenPadding)

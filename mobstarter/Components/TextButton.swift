@@ -43,6 +43,7 @@ public struct TextButton: View {
                 Text(title)
                     .font(FontStyles.button)
                     .lineLimit(1)
+                    .underline(isPressed, color: style == .primary ? ColorPalette.linkColor : foregroundColor)
             }
             .padding(.vertical, Spacing.s)
             .padding(.horizontal, Spacing.m)
@@ -54,14 +55,18 @@ public struct TextButton: View {
                     .stroke(borderColor, lineWidth: style.hasBorder ? 1 : 0)
             )
         }
+        .scaleEffect(isPressed ? 0.95 : 1.0)
+        .animation(.easeInOut(duration: 0.1), value: isPressed)
         .disabled(isDisabled)
         .opacity(isDisabled ? 0.6 : 1.0)
     }
 
+    @State private var isPressed = false
+
     private var foregroundColor: Color {
         switch style {
         case .primary:
-            return isDisabled ? ColorPalette.gray400 : ColorPalette.accent
+            return isDisabled ? ColorPalette.gray400 : ColorPalette.linkColor
         case .secondary:
             return isDisabled ? ColorPalette.gray400 : ColorPalette.textSecondary
         case .danger:

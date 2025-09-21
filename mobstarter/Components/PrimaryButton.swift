@@ -13,18 +13,21 @@ public struct PrimaryButton: View {
     private let isLoading: Bool
     private let isDisabled: Bool
     private let icon: Image?
+    private let fullWidth: Bool
 
     public init(
         _ title: String,
         icon: Image? = nil,
         isLoading: Bool = false,
         isDisabled: Bool = false,
+        fullWidth: Bool = false,
         action: @escaping () -> Void
     ) {
         self.title = title
         self.icon = icon
         self.isLoading = isLoading
         self.isDisabled = isDisabled
+        self.fullWidth = fullWidth
         self.action = action
     }
 
@@ -48,35 +51,44 @@ public struct PrimaryButton: View {
                     .font(FontStyles.button)
                     .lineLimit(1)
             }
-            .frame(maxWidth: .infinity)
+            .frame(maxWidth: fullWidth ? .infinity : nil)
             .padding(.vertical, Spacing.m)
-            .padding(.horizontal, Spacing.l)
+            .padding(.horizontal, fullWidth ? Spacing.xl : Spacing.l)
             .background(
                 isDisabled ?
                 ColorPalette.gray300 :
                 ColorPalette.accent
             )
             .foregroundColor(ColorPalette.white)
-            .cornerRadius(CornerRadius.default)
+            .cornerRadius(fullWidth ? CornerRadius.roundedXL : CornerRadius.l)
             .shadow(color: Shadows.button.color, radius: Shadows.button.radius, x: Shadows.button.x, y: Shadows.button.y)
         }
+        .scaleEffect(isPressed ? 0.97 : 1.0)
+        .opacity(isPressed ? 0.9 : 1.0)
+        .animation(.spring(response: 0.3, dampingFraction: 0.6), value: isPressed)
         .disabled(isDisabled || isLoading)
         .opacity(isDisabled && !isLoading ? 0.6 : 1.0)
     }
+
+    @State private var isPressed = false
 }
 
 // MARK: - Convenience Initializers
 public extension PrimaryButton {
     init(_ title: String, action: @escaping () -> Void) {
-        self.init(title, icon: nil, isLoading: false, isDisabled: false, action: action)
+        self.init(title, icon: nil, isLoading: false, isDisabled: false, fullWidth: false, action: action)
     }
 
     init(_ title: String, isLoading: Bool, action: @escaping () -> Void) {
-        self.init(title, icon: nil, isLoading: isLoading, isDisabled: false, action: action)
+        self.init(title, icon: nil, isLoading: isLoading, isDisabled: false, fullWidth: false, action: action)
     }
 
     init(_ title: String, isDisabled: Bool, action: @escaping () -> Void) {
-        self.init(title, icon: nil, isLoading: false, isDisabled: isDisabled, action: action)
+        self.init(title, icon: nil, isLoading: false, isDisabled: isDisabled, fullWidth: false, action: action)
+    }
+
+    init(_ title: String, fullWidth: Bool, action: @escaping () -> Void) {
+        self.init(title, icon: nil, isLoading: false, isDisabled: false, fullWidth: fullWidth, action: action)
     }
 }
 
@@ -84,6 +96,7 @@ public extension PrimaryButton {
 #Preview {
     VStack(spacing: Spacing.m) {
         PrimaryButton("Get Started", action: {})
+        PrimaryButton("Full Width", fullWidth: true, action: {})
         PrimaryButton("Loading", isLoading: true, action: {})
         PrimaryButton("Disabled", isDisabled: true, action: {})
         PrimaryButton("With Icon", icon: Image(systemName: "star.fill"), action: {})

@@ -27,15 +27,22 @@ public struct ColorPalette {
     public static let gray900 = Color(hex: "#111827")
 
     // Semantic Colors
-    public static let accent = Color(hex: "#007AFF")
+    public static let accent = Color(hex: "#6366F1")  // Indigo
     public static let success = Color(hex: "#10B981")
     public static let error = Color(hex: "#EF4444")
     public static let warning = Color(hex: "#F59E0B")
+    public static let linkColor = Color(hex: "#3B82F6")  // Blue-600
 
     // Background Colors
     public static let background = ColorPalette.white
     public static let surface = ColorPalette.gray50
     public static let card = ColorPalette.white
+
+    // Dark Mode Variants
+    public static let backgroundDark = Color(hex: "#111111")
+    public static let surfaceDark = Color(hex: "#1C1C1E")
+    public static let textPrimaryDark = Color.white
+    public static let textSecondaryDark = Color(hex: "#9CA3AF")
 
     // Text Colors
     public static let textPrimary = ColorPalette.offBlack
@@ -56,7 +63,7 @@ public struct FontStyles {
     public static let bodySmall = Font.system(.callout, design: .default).weight(.regular)
 
     // UI Elements
-    public static let button = Font.system(.body, design: .default).weight(.semibold)
+    public static let button = Font.system(.headline, design: .default).weight(.semibold)
     public static let caption = Font.system(.caption, design: .default).weight(.regular)
     public static let caption2 = Font.system(.caption2, design: .default).weight(.regular)
 }
@@ -84,14 +91,15 @@ public struct CornerRadius {
     public static let `default`: CGFloat = 12
     public static let l: CGFloat = 16
     public static let xl: CGFloat = 24
+    public static let roundedXL: CGFloat = 32
     public static let full: CGFloat = 999
 }
 
 // MARK: - Shadows
 public struct Shadows {
     public static let card = Shadow(
-        color: ColorPalette.gray900.opacity(0.1),
-        radius: 8,
+        color: ColorPalette.gray900.opacity(0.08),  // Lighter
+        radius: 12,  // Larger radius
         x: 0,
         y: 2
     )
@@ -105,7 +113,7 @@ public struct Shadows {
 
     public static let modal = Shadow(
         color: ColorPalette.gray900.opacity(0.25),
-        radius: 16,
+        radius: 20,  // Softer, blurrier
         x: 0,
         y: 4
     )
@@ -152,7 +160,7 @@ extension Color {
 }
 
 // MARK: - Theme Preview
-#Preview {
+#Preview("Light Mode") {
     VStack(spacing: Spacing.m) {
         Text("Design System Preview")
             .font(FontStyles.heading1)
@@ -163,6 +171,7 @@ extension Color {
             Circle().fill(ColorPalette.success).frame(width: 20, height: 20)
             Circle().fill(ColorPalette.error).frame(width: 20, height: 20)
             Circle().fill(ColorPalette.warning).frame(width: 20, height: 20)
+            Circle().fill(ColorPalette.linkColor).frame(width: 20, height: 20)
         }
 
         Text("Body text example")
@@ -175,4 +184,31 @@ extension Color {
     }
     .padding(Spacing.screenPadding)
     .background(ColorPalette.background)
+}
+
+#Preview("Dark Mode") {
+    VStack(spacing: Spacing.m) {
+        Text("Design System Preview")
+            .font(FontStyles.heading1)
+            .foregroundColor(ColorPalette.textPrimaryDark)
+
+        HStack(spacing: Spacing.s) {
+            Circle().fill(ColorPalette.accent).frame(width: 20, height: 20)
+            Circle().fill(ColorPalette.success).frame(width: 20, height: 20)
+            Circle().fill(ColorPalette.error).frame(width: 20, height: 20)
+            Circle().fill(ColorPalette.warning).frame(width: 20, height: 20)
+            Circle().fill(ColorPalette.linkColor).frame(width: 20, height: 20)
+        }
+
+        Text("Body text example")
+            .font(FontStyles.body)
+            .foregroundColor(ColorPalette.textSecondaryDark)
+
+        Text("Caption text")
+            .font(FontStyles.caption)
+            .foregroundColor(ColorPalette.textSecondaryDark)
+    }
+    .padding(Spacing.screenPadding)
+    .background(ColorPalette.backgroundDark)
+    .preferredColorScheme(.dark)
 }
