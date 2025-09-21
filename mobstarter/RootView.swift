@@ -163,7 +163,7 @@ private struct TabContentView: View {
             Group {
                 switch tab {
                 case .home:
-                    MainScreen(
+                    HomeScreen(
                         onCardTap: { card in
                             print("Card tapped: \(card.title)")
                         },
@@ -214,9 +214,9 @@ private struct NavigationDestinationView: View {
                 case .help:
                     HelpScreen()
                 case .privacy:
-                    PrivacyScreen()
+                    PrivacyPolicyScreen()
                 case .terms:
-                    TermsScreen()
+                    TermsOfServiceScreen()
                 case .about:
                     AboutScreen()
                 default:
@@ -396,153 +396,7 @@ private struct ConfirmationModal: View {
     }
 }
 
-// MARK: - Placeholder Screens
-private struct SearchScreen: View {
-    var body: some View {
-        VStack(spacing: Spacing.l) {
-            Header(title: "Search", subtitle: "Find what you're looking for")
 
-            Text("Search functionality coming soon...")
-                .font(FontStyles.body)
-                .foregroundColor(ColorPalette.textSecondary)
-
-            Spacer()
-        }
-        .padding(Spacing.screenPadding)
-        .background(ColorPalette.surface)
-    }
-}
-
-private struct NotificationsScreen: View {
-    var body: some View {
-        VStack(spacing: Spacing.l) {
-            Header(title: "Notifications", subtitle: "Stay updated")
-
-            Text("Notifications coming soon...")
-                .font(FontStyles.body)
-                .foregroundColor(ColorPalette.textSecondary)
-
-            Spacer()
-        }
-        .padding(Spacing.screenPadding)
-        .background(ColorPalette.surface)
-    }
-}
-
-private struct ProfileScreen: View {
-    var body: some View {
-        VStack(spacing: Spacing.l) {
-            Header(title: "Profile", subtitle: "Manage your account")
-
-            Text("Profile screen coming soon...")
-                .font(FontStyles.body)
-                .foregroundColor(ColorPalette.textSecondary)
-
-            Spacer()
-        }
-        .padding(Spacing.screenPadding)
-        .background(ColorPalette.surface)
-    }
-}
-
-private struct SettingsScreen: View {
-    var body: some View {
-        VStack(spacing: Spacing.l) {
-            Text("Settings")
-                .font(FontStyles.heading2)
-                .foregroundColor(ColorPalette.textPrimary)
-
-            VStack(spacing: Spacing.m) {
-                TextKeyValueView(key: "Version", value: "1.0.0")
-                TextKeyValueView(key: "Build", value: "1")
-                TextKeyValueView(key: "Theme", value: "System")
-            }
-
-            Spacer()
-        }
-        .padding(Spacing.screenPadding)
-        .background(ColorPalette.surface)
-    }
-}
-
-private struct HelpScreen: View {
-    var body: some View {
-        VStack(spacing: Spacing.l) {
-            Text("Help & Support")
-                .font(FontStyles.heading2)
-                .foregroundColor(ColorPalette.textPrimary)
-
-            Text("Help content coming soon...")
-                .font(FontStyles.body)
-                .foregroundColor(ColorPalette.textSecondary)
-
-            Spacer()
-        }
-        .padding(Spacing.screenPadding)
-        .background(ColorPalette.surface)
-    }
-}
-
-private struct PrivacyScreen: View {
-    var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: Spacing.l) {
-                Text("Privacy Policy")
-                    .font(FontStyles.heading1)
-                    .foregroundColor(ColorPalette.textPrimary)
-
-                Text("Privacy policy content would go here...")
-                    .font(FontStyles.body)
-                    .foregroundColor(ColorPalette.textSecondary)
-
-                Spacer()
-            }
-            .padding(Spacing.screenPadding)
-        }
-        .background(ColorPalette.surface)
-    }
-}
-
-private struct TermsScreen: View {
-    var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: Spacing.l) {
-                Text("Terms of Service")
-                    .font(FontStyles.heading1)
-                    .foregroundColor(ColorPalette.textPrimary)
-
-                Text("Terms of service content would go here...")
-                    .font(FontStyles.body)
-                    .foregroundColor(ColorPalette.textSecondary)
-
-                Spacer()
-            }
-            .padding(Spacing.screenPadding)
-        }
-        .background(ColorPalette.surface)
-    }
-}
-
-private struct AboutScreen: View {
-    var body: some View {
-        VStack(spacing: Spacing.l) {
-            Text("About")
-                .font(FontStyles.heading2)
-                .foregroundColor(ColorPalette.textPrimary)
-
-            VStack(spacing: Spacing.m) {
-                TextKeyValueView(key: "App Name", value: "MobStarter")
-                TextKeyValueView(key: "Version", value: "1.0.0")
-                TextKeyValueView(key: "Developer", value: "Your Company")
-                TextKeyValueView(key: "Built with", value: "SwiftUI")
-            }
-
-            Spacer()
-        }
-        .padding(Spacing.screenPadding)
-        .background(ColorPalette.surface)
-    }
-}
 
 // MARK: - Sheet Content Views
 private struct FiltersSheet: View {
