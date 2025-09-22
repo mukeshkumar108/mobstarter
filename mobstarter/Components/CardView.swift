@@ -15,6 +15,7 @@ public struct CardView<Content: View>: View {
     private let backgroundColor: Color
     private let borderColor: Color?
     private let withAccentBorder: Bool
+    private let withMaterial: Bool
     private let onTap: (() -> Void)?
 
     public init(
@@ -24,6 +25,7 @@ public struct CardView<Content: View>: View {
         backgroundColor: Color = ColorPalette.card,
         borderColor: Color? = nil,
         withAccentBorder: Bool = false,
+        withMaterial: Bool = false,
         onTap: (() -> Void)? = nil,
         @ViewBuilder content: () -> Content
     ) {
@@ -34,6 +36,7 @@ public struct CardView<Content: View>: View {
         self.backgroundColor = backgroundColor
         self.borderColor = borderColor
         self.withAccentBorder = withAccentBorder
+        self.withMaterial = withMaterial
         self.onTap = onTap
     }
 
@@ -54,7 +57,7 @@ public struct CardView<Content: View>: View {
         content
             .padding(padding.value)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(backgroundColor)
+            .background(withMaterial ? AnyView(Color.clear) : AnyView(backgroundColor))
             .cornerRadius(cornerRadius)
             .ifLet(shadow) { view, shadow in
                 view.shadow(color: shadow.color, radius: shadow.radius, x: shadow.x, y: shadow.y)
@@ -213,6 +216,23 @@ public extension CardView {
                     .foregroundColor(ColorPalette.textPrimary)
 
                 Text("This card has a gradient border for a premium look.")
+                    .font(FontStyles.body)
+                    .foregroundColor(ColorPalette.textSecondary)
+                    .lineLimit(2)
+            }
+        }
+
+        CardView(
+            padding: .medium,
+            withMaterial: true,
+            onTap: { print("Material card tapped!") }
+        ) {
+            VStack(alignment: .leading, spacing: Spacing.s) {
+                Text("iOS Blur Card")
+                    .font(FontStyles.heading3)
+                    .foregroundColor(ColorPalette.textPrimary)
+
+                Text("This card uses .ultraThinMaterial for native iOS blur effect.")
                     .font(FontStyles.body)
                     .foregroundColor(ColorPalette.textSecondary)
                     .lineLimit(2)

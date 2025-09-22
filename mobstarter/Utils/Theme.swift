@@ -27,11 +27,12 @@ public struct ColorPalette {
     public static let gray900 = Color(hex: "#111827")
 
     // Semantic Colors
-    public static let accent = Color(hex: "#6366F1")  // Indigo
-    public static let success = Color(hex: "#10B981")
-    public static let error = Color(hex: "#EF4444")
-    public static let warning = Color(hex: "#F59E0B")
-    public static let linkColor = Color(hex: "#3B82F6")  // Blue-600
+    public static let accent = ColorPalette.offBlack  // Off-black for premium feel
+    public static let accentLight = ColorPalette.gray200  // Subtle highlight variant
+    public static let success = Color(hex: "#22C55E").opacity(0.8)  // Muted green
+    public static let error = Color(hex: "#EF4444").opacity(0.8)    // Muted red
+    public static let warning = Color(hex: "#F59E0B").opacity(0.8)  // Muted orange
+    public static let linkColor = ColorPalette.gray600  // Sophisticated gray
 
     // Background Colors
     public static let background = ColorPalette.white
@@ -98,24 +99,24 @@ public struct CornerRadius {
 // MARK: - Shadows
 public struct Shadows {
     public static let card = Shadow(
-        color: ColorPalette.gray900.opacity(0.08),  // Lighter
-        radius: 12,  // Larger radius
+        color: ColorPalette.offBlack.opacity(0.06),  // Softer, more spread
+        radius: 16,  // Larger radius
+        x: 0,
+        y: 4
+    )
+
+    public static let button = Shadow(
+        color: ColorPalette.offBlack.opacity(0.08),
+        radius: 6,
         x: 0,
         y: 2
     )
 
-    public static let button = Shadow(
-        color: ColorPalette.gray900.opacity(0.15),
-        radius: 4,
-        x: 0,
-        y: 1
-    )
-
     public static let modal = Shadow(
-        color: ColorPalette.gray900.opacity(0.25),
-        radius: 20,  // Softer, blurrier
+        color: ColorPalette.offBlack.opacity(0.15),
+        radius: 24,  // Softer, blurrier
         x: 0,
-        y: 4
+        y: 8
     )
 }
 

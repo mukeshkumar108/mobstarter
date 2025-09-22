@@ -30,7 +30,7 @@ public struct ModalOverlay: View {
                 content
             }
         }
-        .transition(.scale.combined(with: .opacity))
+        .transition(.opacity)
     }
 }
 
