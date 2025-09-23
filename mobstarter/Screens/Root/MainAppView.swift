@@ -19,11 +19,13 @@ public struct MainAppView: View {
             TabView(selection: $navigationState.selectedTab) {
                 ForEach(TabItem.allCases) { tab in
                     TabContentView(tab: tab, navigationState: navigationState)
-                        .tabItem {
-                            Label(tab.rawValue, systemImage: tab.icon)
-                        }
                         .tag(tab)
                 }
+            }
+            .tabViewStyle(.page(indexDisplayMode: .never))
+            .toolbar(.hidden, for: .tabBar)
+            .safeAreaInset(edge: .bottom) {
+                Color.clear.frame(height: 88)
             }
             .overlay(alignment: .bottom) {
                 if !navigationState.tabBarHidden {

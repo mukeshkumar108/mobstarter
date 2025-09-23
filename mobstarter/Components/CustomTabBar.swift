@@ -116,13 +116,20 @@ public struct CustomTabBarWithBadges: View {
                 )
             }
         }
-        .padding(.horizontal, Spacing.s)
-        .padding(.top, Spacing.s)
-        .padding(.bottom, Spacing.s)
+        .padding(.vertical, Spacing.s)
+        .frame(maxWidth: .infinity)
+        .padding(.horizontal, Spacing.l)
+        .padding(.top, Spacing.m)
+        .padding(.bottom, Spacing.m)
         .background(
             ColorPalette.white
-                .shadow(color: ColorPalette.gray900.opacity(0.1), radius: 4, x: 0, y: -2)
+                .clipShape(RoundedRectangle(cornerRadius: CornerRadius.xl, style: .continuous))
+                .shadow(color: ColorPalette.gray900.opacity(0.1), 
+                    radius: 4, 
+                    x: 0, 
+                    y: -2)
         )
+        .ignoresSafeArea(edges: .bottom)
     }
 }
 
