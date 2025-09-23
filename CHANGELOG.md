@@ -38,6 +38,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/spec1.
 - **Shape System**: Implemented `CornerRadius` for consistent border radius
 - **Shadow System**: Added `Shadows` for depth and elevation
 
+### 🎨 UI/UX Improvements
+- **Floating Tab Bar**: Replaced default iOS tab bar with custom floating design
+  - Rounded corners with continuous style for premium feel
+  - Enhanced shadows and modern styling
+  - Badge support maintained in floating design
+  - Proper safe area handling to prevent overlap issues
+
 ### 🔧 Development Experience
 - **Beginner-Friendly**: Comprehensive setup guides and troubleshooting
 - **Agent-Ready**: Clear guardrails and safe workflow patterns

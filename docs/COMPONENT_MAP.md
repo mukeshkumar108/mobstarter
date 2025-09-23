@@ -73,7 +73,10 @@ mobstarter/
 - **`Components/LoaderView.swift`** - Loading states
 
 ### Navigation Components
-- **`Components/CustomTabBar.swift`** - Bottom tab navigation
+- **`Components/CustomTabBar.swift`** - **Floating bottom tab navigation**
+  - `CustomTabBar` - Basic floating tab bar with rounded corners
+  - `CustomTabBarWithBadges` - **Floating tab bar with notification badges**
+  - Features: Rounded corners, enhanced shadows, safe area handling, premium styling
 - **`Components/SidebarView.swift`** - Side menu navigation
 - **`Components/TextKeyValueView.swift`** - Key-value displays
 
