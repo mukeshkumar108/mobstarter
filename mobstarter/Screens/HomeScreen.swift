@@ -11,11 +11,24 @@ public struct HomeScreen: View {
     let onCardTap: (CardItem) -> Void
     let onRefresh: () -> Void
 
+    @State private var selectedCard: CardItem?
+    @State private var showCardDetail = false
+
     public var body: some View {
-        MainScreen(
-            onCardTap: onCardTap,
-            onRefresh: onRefresh
-        )
+        NavigationStack {
+            MainScreen(
+                onCardTap: { card in
+                    selectedCard = card
+                    showCardDetail = true
+                },
+                onRefresh: onRefresh
+            )
+            .navigationDestination(isPresented: $showCardDetail) {
+                if let card = selectedCard {
+                    CardDetailView(card: card)
+                }
+            }
+        }
     }
 }
 

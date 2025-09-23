@@ -1,0 +1,89 @@
+[
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440000",
+    "title": "Project Alpha",
+    "subtitle": "Mobile App Development",
+    "description": "Working on the new user authentication flow with improved security measures and better UX patterns. This includes implementing biometric authentication, secure token storage, and seamless user onboarding experience.",
+    "icon": "iphone",
+    "timestamp": "2 hours ago",
+    "badge": "In Progress",
+    "labels": [
+      {
+        "id": "550e8400-e29b-41d4-a716-446655440010",
+        "text": "iOS Development",
+        "icon": "swift"
+      },
+      {
+        "id": "550e8400-e29b-41d4-a716-446655440011",
+        "text": "UI/UX Design",
+        "icon": "paintbrush.fill"
+      },
+      {
+        "id": "550e8400-e29b-41d4-a716-446655440012",
+        "text": "Security",
+        "icon": "lock.shield.fill"
+      }
+    ]
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440001",
+    "title": "Team Meeting",
+    "subtitle": "Sprint Planning",
+    "description": "Weekly standup to discuss progress, blockers, and plan the next sprint activities. We'll review completed tasks, address any technical debt, and prioritize upcoming features.",
+    "icon": "person.3.fill",
+    "timestamp": "1 day ago",
+    "labels": [
+      {
+        "id": "550e8400-e29b-41d4-a716-446655440013",
+        "text": "Planning",
+        "icon": "calendar"
+      },
+      {
+        "id": "550e8400-e29b-41d4-a716-446655440014",
+        "text": "Team",
+        "icon": "person.2.fill"
+      }
+    ]
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440002",
+    "title": "Design Review",
+    "subtitle": "UI/UX Feedback",
+    "description": "Review session for the new dashboard design with the design team and stakeholders. We'll evaluate the user interface, discuss accessibility improvements, and finalize the design system updates.",
+    "icon": "paintbrush.fill",
+    "timestamp": "2 days ago",
+    "badge": "Completed",
+    "labels": [
+      {
+        "id": "550e8400-e29b-41d4-a716-446655440015",
+        "text": "Design",
+        "icon": "paintpalette.fill"
+      },
+      {
+        "id": "550e8400-e29b-41d4-a716-446655440016",
+        "text": "Feedback",
+        "icon": "bubble.left.fill"
+      }
+    ]
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440003",
+    "title": "Code Review",
+    "subtitle": "Feature Branch",
+    "description": "Review pull request for the new notification system implementation. This includes push notifications, in-app notifications, and notification preferences management.",
+    "icon": "checkmark.circle.fill",
+    "timestamp": "3 days ago",
+    "labels": [
+      {
+        "id": "550e8400-e29b-41d4-a716-446655440017",
+        "text": "Code Review",
+        "icon": "checkmark.circle.fill"
+      },
+      {
+        "id": "550e8400-e29b-41d4-a716-446655440018",
+        "text": "Notifications",
+        "icon": "bell.fill"
+      }
+    ]
+  }
+]

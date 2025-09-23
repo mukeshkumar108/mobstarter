@@ -67,67 +67,10 @@ public struct MainScreen: View {
                         .font(FontStyles.heading3)
                         .foregroundColor(ColorPalette.textPrimary)
 
-                    // Stacked Cards
-                    VStack(spacing: Spacing.m) {
-                        ForEach(MainScreen.sampleCards) { card in
-                            CardView(
-                                padding: .large,
-                                onTap: {
-                                    onCardTap(card)
-                                }
-                            ) {
-                                VStack(alignment: .leading, spacing: Spacing.s) {
-                                    // Card Header
-                                    HStack {
-                                        Image(systemName: card.icon)
-                                            .font(.system(size: 24, weight: .semibold))
-                                            .foregroundColor(ColorPalette.accent)
-
-                                        VStack(alignment: .leading, spacing: 2) {
-                                            Text(card.title)
-                                                .font(FontStyles.heading3)
-                                                .foregroundColor(ColorPalette.textPrimary)
-
-                                            Text(card.subtitle)
-                                                .font(FontStyles.caption)
-                                                .foregroundColor(ColorPalette.textSecondary)
-                                        }
-
-                                        Spacer()
-
-                                        Image(systemName: "chevron.right")
-                                            .foregroundColor(ColorPalette.gray400)
-                                    }
-
-                                    // Card Content
-                                    Text(card.description)
-                                        .font(FontStyles.body)
-                                        .foregroundColor(ColorPalette.textSecondary)
-                                        .lineLimit(2)
-                                        .multilineTextAlignment(.leading)
-
-                                    // Card Footer
-                                    HStack {
-                                        Text(card.timestamp)
-                                            .font(FontStyles.caption)
-                                            .foregroundColor(ColorPalette.textTertiary)
-
-                                        Spacer()
-
-                                        if card.badge != nil {
-                                            Text(card.badge!)
-                                                .font(FontStyles.caption)
-                                                .foregroundColor(ColorPalette.white)
-                                                .padding(.horizontal, Spacing.s)
-                                                .padding(.vertical, 2)
-                                                .background(ColorPalette.accent)
-                                                .cornerRadius(CornerRadius.s)
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    CardListView(
+                        onCardTap: onCardTap,
+                        onRefresh: onRefresh
+                    )
                 }
 
                 // Stats Section
@@ -190,32 +133,7 @@ public struct MainScreen: View {
     }
 }
 
-// MARK: - Card Item Model
-public struct CardItem: Identifiable {
-    public let id = UUID()
-    public let title: String
-    public let subtitle: String
-    public let description: String
-    public let icon: String
-    public let timestamp: String
-    public let badge: String?
 
-    public init(
-        title: String,
-        subtitle: String,
-        description: String,
-        icon: String,
-        timestamp: String,
-        badge: String? = nil
-    ) {
-        self.title = title
-        self.subtitle = subtitle
-        self.description = description
-        self.icon = icon
-        self.timestamp = timestamp
-        self.badge = badge
-    }
-}
 
 // MARK: - Stat Card
 private struct StatCard: View {
@@ -304,42 +222,7 @@ private struct DemoSheet: View {
     }
 }
 
-// MARK: - Sample Data
-public extension MainScreen {
-    static var sampleCards: [CardItem] {
-        [
-            CardItem(
-                title: "Project Alpha",
-                subtitle: "Mobile App Development",
-                description: "Working on the new user authentication flow with improved security measures and better UX patterns.",
-                icon: "iphone",
-                timestamp: "2 hours ago",
-                badge: "In Progress"
-            ),
-            CardItem(
-                title: "Team Meeting",
-                subtitle: "Sprint Planning",
-                description: "Weekly standup to discuss progress, blockers, and plan the next sprint activities.",
-                icon: "person.3.fill",
-                timestamp: "1 day ago"
-            ),
-            CardItem(
-                title: "Design Review",
-                subtitle: "UI/UX Feedback",
-                description: "Review session for the new dashboard design with the design team and stakeholders.",
-                icon: "paintbrush.fill",
-                timestamp: "2 days ago"
-            ),
-            CardItem(
-                title: "Code Review",
-                subtitle: "Feature Branch",
-                description: "Review pull request for the new notification system implementation.",
-                icon: "checkmark.circle.fill",
-                timestamp: "3 days ago"
-            )
-        ]
-    }
-}
+
 
 // MARK: - Preview
 #Preview {

@@ -62,6 +62,12 @@ mobstarter/
 - **`Screens/TermsOfServiceScreen.swift`** - Terms of service text
 - **`Screens/AboutScreen.swift`** - App information
 
+### Card System
+- **`Screens/CardDetailView.swift`** - Full-screen card detail with rich content
+- **`Components/CardListView.swift`** - Data-driven card list with loading states
+- **`Components/LabelRow.swift`** - Reusable label component with icon support
+- **`Components/LabelGrid.swift`** - Multi-column label grid layout
+
 ## 🧩 Components
 
 ### Core UI Components
@@ -117,6 +123,21 @@ mobstarter/
   - Login/logout functionality
   - UserDefaults persistence
   - State restoration
+
+### Card System Data Models
+- **`Models/CardItem.swift`** - Card data structure
+  - `CardItem` struct - Main card model with Identifiable & Codable
+  - `LabelItem` struct - Label metadata with Identifiable & Codable
+  - Preview data generation for testing
+  - JSON serialization support
+- **`Utils/DataLoader.swift`** - Card data loading utility
+  - Bundle JSON loading with error handling
+  - Fallback to preview data on failure
+  - Type-safe decoding with proper error management
+- **`Assets.xcassets/cards.json`** - Sample card data
+  - 4 demo cards with rich metadata
+  - Labels and badge information
+  - Realistic content for testing
 
 ## 🎯 Key Integration Points
 
